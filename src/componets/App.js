@@ -10,7 +10,7 @@ function App() {
     character: '',
   });
   const [search, setSearch] = useState('');
-  const [searchSelect, setSearchSelect] = useState('todos');
+  const [searchSelect, setSearchSelect] = useState('');
 
   const handleSearchSelect = (ev) => {
     setSearchSelect(ev.target.value);
@@ -43,9 +43,10 @@ function App() {
           person.character.toLowerCase().includes(search.toLowerCase()) ||
           person.quote.toLowerCase().includes(search.toLowerCase())
         );
-        person.character.includes(searchSelect);
       })
-
+      .filter((person) => {
+        return person.character.includes(searchSelect);
+      })
       .map((person, index) => {
         return (
           <li key={index}>
